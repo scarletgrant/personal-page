@@ -6,10 +6,13 @@ of the UCD CS Conversion course.
 
 The site has been awarded with an A-.
 
-* Two pages are not yet in this reprository: FAQ and Pics.
-* Below is the description of the originally delivered website. The site is now adjusted for publication.
+* (!)Two pages are not yet in this reprository: FAQ and Pics.
+* (!)Below is the description of the originally delivered website. The site is now adjusted for publication.
 
-![My image](https://github.com/scarletgrant/personal-page/blob/master/images/screenshot_index.png)
+<p align="center">
+  <img src="https://github.com/scarletgrant/personal-page/blob/master/images/screenshot_index.png" height="400" title="hover text">
+  <img src="https://github.com/scarletgrant/personal-page/blob/master/images/screenshot_index_mobile_2.png" height="400" alt="screenshots">
+</p>
 
 ## Requirements
 In this assignment you will be creating a website using HTML and CSS.
