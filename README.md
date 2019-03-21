@@ -6,6 +6,9 @@ of the UCD CS Conversion course.
 
 The site has been awarded with an A-.
 
+* Two pages are not yet in this reprository: FAQ and Pics.
+* Below is the description of the originally delivered website. The site is now adjusted for publication.
+
 ## Requirements
 In this assignment you will be creating a website using HTML and CSS.
 You are required to create one of the following:
