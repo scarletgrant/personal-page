@@ -1,0 +1,430 @@
+/*------------INTRO---------------*/
+    /*
+
+    *   Excessive commenting is used to support beginners coding and show of understanding.
+
+    *   This stylesheet explores with responsive layouts. It is opportune to develop this       further for different screensizes.
+
+    *   This CSS sheet explores the SMACSS structure: Scalable and Modular Architecture for     CSS. For more info: https://smacss.com/
+
+    *	The following structure has been created in the style sheet:
+
+        BASE; kept simple now, but could be structured as skin_base
+        LAYOUT; includes a grid in this case
+        MODULES; all modulair, reusable classes
+        STATES; this includes all interactivity
+        THEME; this includes all coloring. This way, the theme colors could be easily adjusted.
+        SHAME; this section includes temporary, inelegant solutions that work for the time being.
+        (P)RESERVED); This section is added by author for temporary stuff that could be better organized another time.
+
+    *   CSS Validation at https://jigsaw.w3.org/css-validator/validator
+        Last CSS validation check point:
+        2018-01-01-9:45
+
+        */
+
+/* ------------BASE-------------------*/
+    /* base skin */
+    html {
+		  font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+			margin: 0px;
+      height: 100%;
+    }
+
+    body {
+        margin: 0px;
+        min-height:100%;
+        position:relative;
+        padding-bottom:0px;
+    }
+
+    main {
+        grid-area: grid-super_middle;
+        padding: 50px 60px 30px 50px;
+    }
+
+
+/* -----------LAYOUT------------------*/
+
+    /*Box-sizing-property makes sure that the padding and border are included in the total width and height of the elements.*/
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Main (super)grid that covers entire page.
+    More info on grids can be found here: https://drafts.csswg.org/css-grid/#grid-containers*/
+
+    /* Responsive layout - Mobile, Tablets vs Desktops -
+    Makes the navigation_bar stack on top of left side bar for mobile and tablet devices..
+    On mobile devices the Gadgets section is located below the main content.*/
+
+    /* Grid can be adjusted anytime. Extra sub-grids can be added within gridcells.
+    Responsive @media queries can be further explored at https://www.w3schools.com/css/css_rwd_mediaqueries.asp
+
+    /*Mobile*/
+    @media screen and (max-width: 620px) {
+        .grid-super  {
+            display: grid;
+            grid-template-areas:
+                'grid-super_header'
+                'grid-super_left'
+                'grid-super_middle'
+                'grid-super_right_header'
+                'grid-super_right'
+                'grid-super_footer';
+                grid-template-columns: 1fr;
+                grid-template-rows: 50px 1fr 1fr 50px 1fr 50px;
+        }
+      }
+
+    /* Tablets */
+    @media screen and (min-width: 620px) {
+          .grid-super  {
+            display: grid;
+            grid-template-areas:
+                'grid-super_header grid-super_header grid-super_right_header'
+                'grid-super_left grid-super_left grid-super_right'
+                'grid-super_middle grid-super_middle grid-super_middle'
+                'grid-super_footer grid-super_footer grid-super_footer';
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 50px 1fr 1fr 50px;
+              }
+            }
+
+    /*Desktop */
+    @media screen and (min-width: 800px) {
+          .grid-super{
+          display: grid;
+          width: 100%;
+          height: 100%;
+          grid-template-areas:
+    		    "grid-super_left grid-super_header grid-super_header grid-super_right_header"
+    		    "grid-super_left grid-super_middle grid-super_middle grid-super_right"
+    		    "grid-super_footer grid-super_footer grid-super_footer grid-super_footer";
+    		    grid-template-columns: 1fr 1fr 1fr 1fr;
+    		    grid-template-rows: 50px 1fr 50px;
+    		  }
+        }
+
+
+    .grid-super_left {
+        grid-area: grid-super_left;
+    }
+    .grid-super_header {
+        grid-area: grid-super_header;
+    }
+    .grid-super_right_header {
+        grid-area: grid-super_right_header;
+    }
+    .grid-super_right {
+        grid-area: grid-super_right;
+    }
+    .grid-super_middle {
+        grid-area: grid-super_middle;
+    }
+    .grid-super_footer {
+        grid-area: grid-super_footer;
+        height: 50px;
+    }
+
+    /* Content block layout */
+
+    .footer-content {
+      grid-area: grid-super_footer;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+
+    .user-profile-summary-content {
+        grid-area: grid-super_left;
+        padding: 40px 40px 40px 40px;
+    }
+
+		.user-profile-image {
+			grid-area: grid-super_left;
+		  position: relative;
+		  width: 100%;
+      z-index: 1;
+		}
+
+		.user-profile-name-box {
+			grid-area: grid-super_left;
+		  position: absolute;
+			padding-left: 40px;
+			padding-top: 20px;
+      padding-right: 20px;
+      padding-bottom: 20px;
+			bottom: 20px;
+			left:0px;
+		  height: auto;
+      z-index: 2;
+
+		}
+		.user-profile-name h1 {
+			font-size: 40px;
+			font-weight: 400;
+      vertical-align: middle;
+			margin: 0;
+			text-align: left;
+			}
+
+		.user-profile-status h4 {
+			font-size: 15px;
+			font-weight: 200;
+			margin: 0;
+			text-align: left;
+				}
+
+		.user-profile-summary-content h5, .user-content h5 {
+			font-size: 13px;
+			margin: 0;
+      padding-bottom: 6px;
+			text-align: left;
+      font-weight: lighter;
+				}
+
+		.user-profile-summary-content p, ul, .user-content p  {
+        font-size: 15px;
+        vertical-align: middle;
+        margin: 0;
+        text-align: left;
+        font-weight: lighter;
+				}
+
+    .user-content li  {
+        list-style-type: none;
+        }
+
+/* -----------MODULES--------------- */
+    /*Navigation and right header*/
+    .navigation-bar a, .right-header a {;
+        font-size: 18px;
+				font-weight: 300;
+        display: block;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    .navigation-bar ul, .right-header ul {
+        top: 0;
+        width: 100%;
+        list-style-type: none;
+        height: 50px;
+        margin: 0;
+        padding: 0;
+        display: table;
+    }
+
+    .navigation-bar li, .right-header li {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        }
+
+    /*Table*/
+    table {
+      width:100%;
+    }
+
+    table, th, td {
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 7px;
+      text-align: left;
+    }
+
+
+
+/* -------------STATE---------------*/
+
+    /* The status changes involve color only at this time and are included in Theme section for now.
+    If opportune the state and colors can be seperated in different classes later.
+    Some properties could also be more efficient grouped together.
+    For clear overview and editability it is organized on layout at the moment.
+
+/*-------------THEME----------------*/
+
+	/* All colors are grouped in this section to edit quickly if needed */
+
+    /* General (global) colors */
+
+    p {
+        color: black;
+    }
+
+    h1 {
+        color: black;
+    }
+
+    h2 {
+        text-decoration:overline;
+        text-decoration-color: rgba(98,131,149,1);
+        text-decoration-style: dotted;
+
+    }
+
+
+    a {
+      color: rgba(98,131,149,1);
+      font-weight: bold;
+    }
+
+    main {
+      color: black;
+    }
+
+    summary {
+      color: rgba(98,131,149,1);
+    }
+    /* Element (local) colors - Listed in grid order */
+    .grid-super_left {
+      /*Change former color: rgba(94,104,128,1) */background-color: rgba(94,104,128,0.9);
+      color: white;
+    }
+
+            .user-profile-summary-content {
+              color: white;
+              }
+
+						.user-profile-name-box {
+							background-color: rgba(94,104,128,0.6);
+							color: white;
+						  }
+
+						.user-profile-name h1 {
+							color: 	white;
+						  }
+
+						.user-profile-summary-content h5  {
+							color: #F5F5F5;
+							}
+
+						.user-profile-summary-content p {
+							color: 	black;
+							}
+
+    .grid-super_header {
+      background-color: black;
+      color: #fff;
+    }
+
+            /* Navigation bar coloring - li has no color yet and is commented out but reserved */
+            .navigation-bar ul {
+              background-color: rgba(0,0,0,0.5);
+            }
+
+            .navigation-bar a {;
+              color: white;
+            }
+
+            .navigation-bar a:hover {
+              background-color: rgba(94,104,128,0.6);
+            }
+
+            .navigation-bar a.active {
+                background-color: rgba(94,104,128,0.4);
+                font-weight: bold;
+           }
+
+    .grid-super_right {
+      color: white;
+      background-color: rgba(94,104,128,0.03);
+    }
+
+            /* Right Header - currently displaying gAdgets */
+            .right-header ul {
+              background-color: rgba(94,104,128,1);
+              color: white;
+            }
+
+    .grid-super_middle {
+      background-color: #fff;
+    }
+
+              .user-content h5 {
+          		  color: grey;
+                }
+
+              table, th, td {
+                border: 1px solid black;
+              }
+
+              th#left  {
+                background-color: lightgrey;
+                color: black;
+              }
+              th#top {
+                background-color: rgba(94,104,128,0.7);
+                color: white;
+              }
+
+    .grid-super_footer {
+        background-color: black;
+    }
+
+            .footer-content p{
+              grid-area: grid-super_footer;
+              color: lightgray;
+            }
+/*-------------SHAME----------------*/
+  /*
+Sticks the footer on the bottom with the position attribute in the body and footer.
+This is not the most optimal way to do it and a more robust way should be implemented later.
+Here is a page for several ways to do it: https://css-tricks.com/couple-takes-sticky-footer/ */
+    .grid-super_footer {
+      position: absolute;
+      left: 0 ; right: 0; bottom: 0;
+    }
+
+/* Portfolio Gallery Grid Taken from https://www.w3schools.com/howto/howto_css_portfolio_gallery.asp-
+Ready for further customization and proper organisation in the CSS.*/
+
+    .row {
+      margin: 8px -16px;
+    }
+
+    /* Add padding BETWEEN each column */
+    .row,
+    .row > .column {
+      padding: 5px;
+    }
+
+    /* Create four equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 25%;
+    }
+
+    /* Clear floats after rows */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Content */
+    .content {
+      background-color: white;
+      padding: 10px;
+    }
+
+    /* Responsive layout - makes a two column-layout instead of four columns */
+    @media screen and (max-width: 1200px) {
+      .column {
+        width: 50%;
+      }
+    }
+
+    /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+      }
+    }
+
+/*-------------(P)RESERVED----------------
+
+*/
